@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BR€KA.WEAR – Streetwear Y2K & Underground, La Réunion</title>
+<meta name="description" content="Boutique en ligne de streetwear et Y2K à La Réunion.">
+<meta name="color-scheme" content="dark">
+<style>
+:root{--noir:#000;--anthracite:#1b1c1e;--gris:#2a2b2e;--argent:#c9ccd1;--chrome:#8d9198;--blanc:#f4f4f2;
+--chromegrad:linear-gradient(180deg,#fff 0%,#c9ccd1 38%,#6e7279 52%,#d8dade 70%,#8d9198 100%)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--noir);color:var(--blanc);font-family:"Helvetica Neue",Arial,sans-serif;line-height:1.55}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--argent);outline-offset:3px}
+header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--gris)}
+.logo{font-weight:800;letter-spacing:.04em;text-decoration:none;background:var(--chromegrad);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{display:flex;gap:22px;align-items:center;font-size:.95rem}
+nav a{text-decoration:none;color:var(--argent)}
+nav a:hover{color:#fff}
+button{font:inherit;cursor:pointer}
+.cartbtn{background:none;border:1px solid var(--chrome);color:var(--blanc);padding:7px 14px}
+.hero{min-height:82vh;display:flex;flex-direction:column;justify-content:center;padding:8vh 5vw;background:radial-gradient(ellipse at 70% 20%,#26272b 0%,#000 62%)}
+.hero h1{font-size:clamp(3rem,13vw,10rem);line-height:.95;font-weight:900;letter-spacing:-.02em;background:var(--chromegrad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #000)}
+.hero p{max-width:34ch;margin:26px 0 30px;color:var(--argent);font-size:1.15rem}
+.btn{display:inline-block;background:var(--blanc);color:#000;border:0;padding:13px 26px;font-weight:700;text-decoration:none}
+.btn:hover{background:var(--argent)}
+.btn.ghost{background:none;color:var(--blanc);border:1px solid var(--chrome)}
+section{padding:9vh 5vw}
+h2{font-size:1.9rem;margin-bottom:26px;font-weight:800}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.filters button{background:none;border:1px solid var(--gris);color:var(--argent);padding:7px 16px}
+.filters button[aria-pressed="true"]{border-color:var(--argent);color:#fff;background:var(--anthracite)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
+.card{background:var(--anthracite);display:flex;flex-direction:column}
+.card .img{aspect-ratio:4/5;background:linear-gradient(135deg,#222326,#0c0c0d);display:grid;place-items:center;color:var(--chrome);font-weight:800;font-size:2rem;overflow:hidden}
+.card .img img{width:100%;height:100%;object-fit:cover}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-size:1.05rem}
+.card .desc{color:var(--chrome);font-size:.9rem;flex:1}
+.price{font-weight:700}
+.soon{color:var(--chrome);font-style:italic}
+select{background:var(--gris);color:#fff;border:1px solid var(--chrome);padding:8px}
+.empty{color:var(--chrome)}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;background:var(--anthracite)}
+.info p{color:var(--argent);max-width:42ch}
+footer{padding:40px 5vw;border-top:1px solid var(--gris);color:var(--chrome);font-size:.9rem;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
+#drawer{position:fixed;inset:0 0 0 auto;width:min(420px,100%);background:var(--anthracite);z-index:10;transform:translateX(100%);transition:transform .25s;padding:22px;display:flex;flex-direction:column;gap:14px;border-left:1px solid var(--chrome)}
+#drawer.open{transform:none}
+#items{flex:1;overflow:auto}
+.line{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--gris);font-size:.95rem}
+.line button{background:none;border:1px solid var(--chrome);color:#fff;width:26px;height:26px}
+.total{font-weight:800;font-size:1.1rem;display:flex;justify-content:space-between}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:560px){nav a.hide{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#top">BR€KA.WEAR</a>
+  <nav>
+    <a class="hide" href="#boutique">Boutique</a>
+    <a class="hide" href="#infos">Livraison</a>
+    <a class="hide" href="#contact">Contact</a>
+    <button class="cartbtn" id="openCart" aria-label="Ouvrir le panier">Panier (<span id="count">0</span>)</button>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <h1>BR€KA<br>.WEAR</h1>
+    <p>Streetwear, Y2K et underground, livrés à La Réunion.</p>
+    <div><a class="btn" href="#boutique">Voir la sélection</a></div>
+  </div>
+
+  <section id="boutique">
+    <h2>La sélection</h2>
+    <div class="filters" id="filters" role="group" aria-label="Filtrer par catégorie"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="infos">
+    <h2>Livraison et retours</h2>
+    <div class="info">
+      <p><strong>Livraison.</strong> À compléter : zones desservies, délais, tarifs, remise en main propre au Port.</p>
+      <p><strong>Retours.</strong> À compléter : délai, état des articles, qui paie le retour.</p>
+      <p><strong>Paiement.</strong> À compléter : moyens acceptés après confirmation de votre commande.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p style="color:var(--argent);margin-bottom:18px">Une question sur une taille ou une commande ? Écrivez-nous.</p>
+    <a class="btn ghost" id="igLink" href="#">Instagram</a>
+  </section>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> BR€KA.WEAR – Le Port, La Réunion</span>
+  <span>Mentions légales · CGV · Confidentialité (à ajouter)</span>
+</footer>
+
+<aside id="drawer" aria-label="Panier">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <h2 style="margin:0;font-size:1.4rem">Votre panier</h2>
+    <button class="cartbtn" id="closeCart">Fermer</button>
+  </div>
+  <div id="items"></div>
+  <div class="total"><span>Total</span><span id="total">0 €</span></div>
+  <button class="btn" id="order">Envoyer ma commande</button>
+  <small style="color:var(--chrome)">Votre commande est envoyée par message. Le paiement est confirmé avec vous ensuite.</small>
+</aside>
+
+<script>
+/* ============ À PERSONNALISER ============ */
+const CONFIG = {
+  devise: "€",
+  whatsapp: "",            // ex : "262692000000" (indicatif sans + ni espaces). Laissez vide pour utiliser Instagram.
+  instagram: "",           // ex : "breka.wear" (nom du compte, sans @)
+};
+
+/* status : "dispo" = en stock, vendable (il faut un prix et des tailles)
+            "bientot" = annoncé, non vendable
+   image : chemin du fichier dans le dossier, ex "img/jort-noir.jpg" (facultatif) */
+const PRODUITS = [
+  { id:"ex-jort",   nom:"Jort baggy denim",  cat:"Jorts et shorts", desc:"Exemple à remplacer.", status:"bientot" },
+  { id:"ex-tshirt", nom:"T-shirt graphique", cat:"T-shirts",        desc:"Exemple à remplacer.", status:"bientot" },
+  { id:"ex-bague",  nom:"Bague spiked",      cat:"Accessoires",     desc:"Exemple à remplacer.", status:"bientot" }
+  /* Exemple de produit en stock :
+  { id:"tee-01", nom:"T-shirt oversized noir", cat:"T-shirts", desc:"100 % coton, coupe ample.",
+    prix:30, tailles:["S","M","L","XL"], status:"dispo", image:"img/tee-01.jpg" }, */
+];
+/* ========================================= */
+
+const $ = s => document.querySelector(s);
+let cart = [], filtre = "Tout";
+try { cart = JSON.parse(localStorage.getItem("breka-cart")) || []; } catch(e) { cart = []; }
+const save = () => { try { localStorage.setItem("breka-cart", JSON.stringify(cart)); } catch(e) {} };
+const money = n => n.toFixed(2).replace(".", ",").replace(",00", "") + " " + CONFIG.devise;
+
+function drawFilters(){
+  const cats = ["Tout", ...new Set(PRODUITS.map(p => p.cat))];
+  $("#filters").innerHTML = "";
+  cats.forEach(c => {
+    const b = document.createElement("button");
+    b.textContent = c; b.setAttribute("aria-pressed", c === filtre);
+    b.onclick = () => { filtre = c; drawFilters(); drawGrid(); };
+    $("#filters").appendChild(b);
+  });
+}
+function drawGrid(){
+  const g = $("#grid"); g.innerHTML = "";
+  const liste = PRODUITS.filter(p => filtre === "Tout" || p.cat === filtre);
+  if (!liste.length){ g.innerHTML = '<p class="empty">Les premiers articles arrivent bientôt.</p>'; return; }
+  liste.forEach(p => {
+    const el = document.createElement("article"); el.className = "card";
+    const img = p.image ? `<img src="${p.image}" alt="${p.nom}" loading="lazy">` : "BK";
+    let action = '<span class="soon">Arrivage bientôt</span>';
+    if (p.status === "dispo"){
+      const opts = (p.tailles || ["Unique"]).map(t => `<option>${t}</option>`).join("");
+      action = `<span class="price">${money(p.prix)}</span>
+        <select aria-label="Taille de ${p.nom}">${opts}</select>
+        <button class="btn" data-id="${p.id}">Ajouter au panier</button>`;
+    }
+    el.innerHTML = `<div class="img">${img}</div><div class="body"><h3>${p.nom}</h3><p class="desc">${p.desc || ""}</p>${action}</div>`;
+    const btn = el.querySelector("button");
+    if (btn) btn.onclick = () => add(p, el.querySelector("select").value);
+    g.appendChild(el);
+  });
+}
+function add(p, taille){
+  const l = cart.find(x => x.id === p.id && x.taille === taille);
+  l ? l.qte++ : cart.push({ id:p.id, nom:p.nom, prix:p.prix, taille, qte:1 });
+  save(); drawCart(); $("#drawer").classList.add("open");
+}
+function change(i, d){ cart[i].qte += d; if (cart[i].qte <= 0) cart.splice(i, 1); save(); drawCart(); }
+function drawCart(){
+  const box = $("#items"); box.innerHTML = "";
+  if (!cart.length) box.innerHTML = '<p class="empty">Votre panier est vide. Ajoutez un article depuis la sélection.</p>';
+  cart.forEach((l, i) => {
+    const d = document.createElement("div"); d.className = "line";
+    d.innerHTML = `<span>${l.nom}<br><small>Taille ${l.taille} · ${money(l.prix)}</small></span>
+      <span><button aria-label="Retirer un">−</button> ${l.qte} <button aria-label="Ajouter un">+</button></span>`;
+    const [m, p] = d.querySelectorAll("button"); m.onclick = () => change(i, -1); p.onclick = () => change(i, 1);
+    box.appendChild(d);
+  });
+  $("#count").textContent = cart.reduce((a, l) => a + l.qte, 0);
+  $("#total").textContent = money(cart.reduce((a, l) => a + l.prix * l.qte, 0));
+}
+$("#order").onclick = () => {
+  if (!cart.length){ alert("Votre panier est vide."); return; }
+  const lignes = cart.map(l => `- ${l.qte} × ${l.nom} (taille ${l.taille}) : ${money(l.prix * l.qte)}`).join("\n");
+  const txt = `Bonjour BR€KA.WEAR, je souhaite commander :\n${lignes}\nTotal : ${$("#total").textContent}`;
+  if (CONFIG.whatsapp) window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(txt)}`, "_blank");
+  else if (CONFIG.instagram){ navigator.clipboard && navigator.clipboard.writeText(txt); alert("Commande copiée. Collez-la dans un message Instagram."); window.open(`https://ig.me/m/${CONFIG.instagram}`, "_blank"); }
+  else alert("Renseignez whatsapp ou instagram dans CONFIG pour recevoir les commandes.");
+};
+$("#openCart").onclick = () => $("#drawer").classList.add("open");
+$("#closeCart").onclick = () => $("#drawer").classList.remove("open");
+$("#igLink").href = CONFIG.instagram ? `https://instagram.com/${CONFIG.instagram}` : "#";
+$("#year").textContent = new Date().getFullYear();
+drawFilters(); drawGrid(); drawCart();
+</script>
+</body>
+</html>
